@@ -1,0 +1,310 @@
+#include<iostream>
+using namespace std;
+const int capcity = 100;
+static int temp = 0 ;
+static string arraybook[capcity][4];
+void showmessage(int num);
+void modify();
+void showbook(int id);
+bool checkbook(int num);
+void deletebook(int num );
+string  showmessage2(int num );
+int  searchbookid(string name);
+void searchbook(int num);
+void addbook()
+{
+	string str;
+	int i = 0, j= 0;
+static int x = 0;
+
+
+for(i = 0 ;i<= x;i++)
+{
+for(j = 0 ;j<=4;j++)
+{showmessage(j);
+	cin>>str;
+	arraybook[i][j] = str;
+}
+}
+
+++temp;
+
+	for(i = 0; i<=x ;i++)
+	for(j = 0;j<=4;j++)
+	cout<<showmessage2(j)<<arraybook[i][j]<<endl;
+++x;
+
+}
+
+void  showmessage(int num){
+	switch(num){
+		case 0 :{
+			cout<<"please enter the name of the book "<<endl;
+			
+			
+			break;
+		}
+
+
+case 1 : {
+	
+				cout<<"please enter the Author name of the book "<<endl;
+
+	
+	break;
+}
+
+case 2: {
+	
+				cout<<"please enter the cost of the book "<<endl;
+
+	break;
+}
+
+case 3 : {
+	
+				cout<<"please enter the Publisher  of the book "<<endl;
+
+	break;
+}
+case 4 : {
+	cout<<"please enter the number of Edition "<<endl;
+	
+	break;
+}
+default :{
+	
+	break;
+}
+
+}
+	
+}
+string  showmessage2(int num ){ 
+
+switch(num){ 
+case 0: {
+	return "The Name : ";
+	break;
+}
+
+case 1 : {
+	
+return 	"The Author Name : "; 
+	break;
+}
+case 2 : { 
+
+return "the cost : ";
+	break;
+}
+case 3 :{ 
+return "the Publisher : ";
+	break;
+}
+case 4 : {
+return "The Edition : "; 
+	break;
+}
+default : { 
+	break;
+} 
+
+}
+}
+void showmenu(){
+	int choose ;
+	cout<<"1. Add Book"<<endl;
+	cout<<"2. Modify Book"<<endl;
+	cout<<"3. view Book"<<endl;
+	cout<<"4. delete Book"<<endl;	
+	cout<<"5. Search Book"<<endl;	
+	cout<<"6. Close Application"<<endl;
+	cin>>choose ;
+	switch(choose){
+		case 1: {
+				addbook();
+
+			break;
+		}
+		
+		case 2: {
+			modify();
+			break;
+		}
+		
+		case 3 : {
+			cout<<"please enter the id of the book"<<endl;
+			int choo;
+			cin >>choo;
+				showbook(choo);
+			
+			break;
+		}
+		case 4:{
+			cout<<"please enter the id of the book"<<endl;
+			int choo; 
+			cin >>choo;
+		if(checkbook(choo)){
+	deletebook(choo);
+	}
+	else {
+		cout<<"the Book is not found "<<endl;
+	}		break;
+		}
+		case 5 :{
+			cout<<"1. Search about Id of the book"<<endl;
+			cout<<"2. Search about items of the book "<<endl;
+			int num;
+			cin>>num;
+			if(num==1){
+				string name ;
+				cout<<"please enter the name of the book "<<endl;
+				cin>>name;
+				cout<<searchbookid( name);
+			}
+			else if(num==2) {
+				cout<<"please enter the id of the book"<<endl;
+				int n;
+				cin >> n;
+				 searchbook(n);
+			}
+			break;
+		}
+		case 6:{
+			break;
+		}
+		default :{
+			break;
+		}
+	}
+}
+int  modifyshow1(){
+	int num ;
+	cout<<"please choose what do you want to edit  "<<endl;
+	cout<<"1 . the Name of Book "<<endl;
+	cout<<"2 . The Author Name"	<<endl;
+	cout<<"3 . the Cost of Book " <<endl;
+	cout<<"4 . the Publisher of Book" <<endl;
+	cout<<"5 . the Edition of Book"<<endl;
+cin>> num;
+return num;
+}
+
+void showlist(int num) { 
+	
+switch(num) { 
+case 1 : {
+	cout<<"please enter the new Name of  book"<<endl;
+	break;
+}
+
+case 2 : {
+		cout<<"please enter The new Author Name"<<endl;
+	break;
+}
+
+case 3 : {
+	cout<<"please enter the  new Cost of book " <<endl; 
+	break;
+}
+case 4 : {
+	cout<<"please enter the  new Publisher of book" <<endl; 
+	break;
+}
+case 5 :  { 
+cout<<"please enter the New Number of Edition "<<endl;
+
+
+	break;
+}
+default : {
+	
+	break;
+}}
+}
+
+
+void modify(){
+	int choose, num;
+	string str;
+	cout<<"please enter the id of the book "<<endl;
+	cin>>num;
+	if(checkbook(num)){
+choose = modifyshow1()-1;
+		showlist(choose+1);
+
+cin>>str;
+arraybook[num][choose] = str;
+	
+		for(int i = 0; i<=num ;i++)
+	for(int j = 0;j<=4;j++)
+	cout<<showmessage2(j)<<arraybook[i][j]<<endl;	
+	}
+else 	{
+		cout<<"the book is not found "<<endl;
+		
+		
+	}
+	
+	
+}
+bool checkbook(int num)
+{
+	return num<=temp ;
+}
+
+void showbook(int id)
+{int i,j;
+	for(i = 0; i<=id ;i++)
+	for(j = 0;j<=4;j++)
+	cout<<showmessage2(j)<<arraybook[i][j]<<endl;
+
+}
+
+
+void deletebook(int num ) { 
+int i , j ; 
+for (i = 0 ; i<=num;i++)
+{
+	for(j = 0 ; j<=4;j++)
+	arraybook[i][j] = "";
+	
+}
+
+
+
+cout<<"the book was deleted sucessfully"<<endl;
+
+
+
+
+}
+
+int  searchbookid(string name) {
+ 
+int i ; 
+for(i = 0 ; i <=temp;i++)
+if(arraybook[i][0]==name)
+return  i;
+}
+void searchbook(int num){
+	cout<<"please choose what do you want to search about "<<endl;
+	cout<<"1 . the Name of Book "<<endl;
+	cout<<"2 . The Author Name"	<<endl;
+	cout<<"3 . the Cost of Book " <<endl;
+	cout<<"4 . the Publisher of Book" <<endl;
+	cout<<"5 . the Edition of Book"<<endl;
+int choose;
+cin>>choose;
+
+
+cout<<showmessage2(choose)<<arraybook[num][choose-1]<<endl;
+	
+
+}
+
+int main() {
+	
+	showmenu();
+}
